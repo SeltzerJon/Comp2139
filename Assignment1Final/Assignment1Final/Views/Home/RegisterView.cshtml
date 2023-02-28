@@ -1,0 +1,20 @@
+﻿@model Assignment1Final.Models.Register
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" action="@Url.Action("Register", "Account")">
+    <div>
+        <label for="Username">Username:</label>
+        <input type="text" id="Username" name="Username" value="@Model.Username" required />
+    </div>
+    <div>
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" required />
+    </div>
+    <div>
+        <label for="ConfirmPassword">Confirm Password:</label>
+        <input type="password" id="ConfirmPassword" name="ConfirmPassword" required />
+    </div>
+    <button type="submit">Register</button>
+</form>

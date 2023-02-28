@@ -1,0 +1,58 @@
+﻿@model Assignment1Final.Models.Search
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Search Results</h1>
+
+<form method="get">
+    <label for="searchString">Search:</label>
+    <input type="text" name="searchString" value="@Model.SearchString" />
+
+    <label for="category">Category:</label>
+    <select name="category">
+        <option value="">All</option>
+        <option value="Toys" asp-selected="@(Model.Category == "Toys" ? "selected" : "")">Toys</option>
+        <option value="Clothing" asp-selected="@(Model.Category == "Clothing" ? "selected" : "")">Clothing</option>
+        <option value="Electronics" asp-selected="@(Model.Category == "Electronics" ? "selected" : "")">Electronics</option>
+    </select>
+
+    <div class="form-group">
+        <label for="sortBy">Sort by:</label>
+        <select id="sortBy" name="sortBy" class="form-control">
+            <option value="">Relevance</option>
+            <option value="name" asp-selected="@(Model.SortBy == "name")">Name</option>
+            <option value="bidAmount" asp-selected="@(Model.SortBy == "bidAmount")">Minimum Bid Amount</option>
+            <option value="endDate" asp-selected="@(Model.SortBy == "endDate")">End Bid Date</option>
+        </select>
+    </div>
+
+    <button type="submit">Search</button>
+</form>
+
+@if (Model.Items != null && Model.Items.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.MinimumBidAmount</td>
+                    <td>@item.Category</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No items found.</p>
+}

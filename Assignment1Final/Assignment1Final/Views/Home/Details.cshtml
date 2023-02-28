@@ -1,0 +1,21 @@
+﻿@model Item
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Name</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <!-- Retrieves the image from the item's Image property -->
+        <img src="@Url.Action("GetImage", "Item", new { id = Model.Id })" class="img-fluid" />
+    </div>
+    <div class="col-md-8">
+        <p>@Model.Description</p>
+        <p><strong>Minimum Bid:</strong> $@Model.MinimumBidAmount</p>
+        <p><strong>Start Bid Date:</strong> @Model.StartBidDate.ToShortDateString()</p>
+        <p><strong>End Bid Date:</strong> @Model.EndBidDate.ToShortDateString()</p>
+        <p><strong>Condition:</strong> @Model.Condition</p>
+        <p><strong>Category:</strong> @Model.Category</p>
+    </div>
+</div>
